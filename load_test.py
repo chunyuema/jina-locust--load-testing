@@ -1,4 +1,4 @@
-import time, random
+import time, random, os
 from locust import User, task
 from jina import Client, Document
 
@@ -53,7 +53,9 @@ class JinaLoadTestUser(User):
     def __init__(self, environment):
         super().__init__(environment)
         self.req_handler = JinaRequestHandler(environment, JinaReuqestService)
-        self.client = Client(host='https://1df7973034.wolf.jina.ai')
+        host = os.getenv('HOST_ENDPOINT')
+        assert host != None
+        self.client = Client(host=host)
 
     # @task
     # def get_request_load_test(self):
