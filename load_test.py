@@ -10,8 +10,11 @@ class JinaReuqestService:
         time.sleep(random.random())
 
     def post(*args, **kwargs):
-        jina_client = kwargs["jina_client"]
-        jina_client.post('/', Document(text=kwargs["text"]))
+        ## todo: replace with actual Client get
+        print("Making a post call using Jina Client", *args, **kwargs)
+        time.sleep(random.random())
+        # jina_client = kwargs["jina_client"]
+        # jina_client.post('/', Document(text=kwargs["text"]))
 
 
 class JinaRequestHandler:
@@ -57,9 +60,9 @@ class JinaLoadTestUser(User):
         assert host != None
         self.client = Client(host=host)
 
-    # @task
-    # def get_request_load_test(self):
-    #     self.req_handler.get()
+    @task
+    def get_request_load_test(self):
+        self.req_handler.get()
 
     @task
     def post_request_load_test(self):
