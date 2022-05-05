@@ -53,8 +53,7 @@ class JinaLoadTestUser(User):
     def __init__(self, environment):
         super().__init__(environment)
         self.req_handler = JinaRequestHandler(environment, JinaReuqestService)
-        host = os.getenv('HOST_ENDPOINT')
-        assert host != None
+        host = "https://1df7973034.wolf.jina.ai"
         self.client = Client(host=host)
 
     @task
