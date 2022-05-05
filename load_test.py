@@ -11,10 +11,10 @@ class JinaReuqestService:
 
     def post(*args, **kwargs):
         ## todo: replace with actual Client get
-        print("Making a post call using Jina Client", *args, **kwargs)
-        time.sleep(random.random())
-        # jina_client = kwargs["jina_client"]
-        # jina_client.post('/', Document(text=kwargs["text"]))
+        # print("Making a post call using Jina Client", *args, **kwargs)
+        # time.sleep(random.random())
+        jina_client = kwargs["jina_client"]
+        jina_client.post('/', Document(text=kwargs["text"]))
 
 
 class JinaRequestHandler:
