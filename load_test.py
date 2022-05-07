@@ -2,6 +2,7 @@ import time, random, os
 from locust import User, task
 from jina import Client, Document
 
+jina_client = Client(host="https://1df7973034.wolf.jina.ai")
 
 class JinaReuqestService:
     def get(*args, **kwargs):
@@ -12,7 +13,6 @@ class JinaReuqestService:
     def post(*args, **kwargs):
         ## todo: replace with actual Client get
         print("Making post request with: ", kwargs["text"])
-        jina_client = kwargs["jina_client"]
         jina_client.post('/', Document(text=kwargs["text"]))
 
 
@@ -55,8 +55,6 @@ class JinaLoadTestUser(User):
     def __init__(self, environment):
         super().__init__(environment)
         self.req_handler = JinaRequestHandler(environment, JinaReuqestService)
-        host = "https://1df7973034.wolf.jina.ai"
-        self.client = Client(host=host)
 
     @task
     def get_request_load_test(self):
@@ -64,4 +62,4 @@ class JinaLoadTestUser(User):
 
     @task
     def post_request_load_test(self):
-        self.req_handler.post(text="Hello World", jina_client=self.client)
+        self.req_handler.post(text="Hello World")
