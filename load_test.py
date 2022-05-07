@@ -6,10 +6,12 @@ from jina import Client, Document
 class JinaReuqestService:
     def get(*args, **kwargs):
         ## todo: replace with actual Client get
+        print("Making get request!")
         time.sleep(random.random())
 
     def post(*args, **kwargs):
         ## todo: replace with actual Client get
+        print("Making post request with: ", kwargs["text"])
         jina_client = kwargs["jina_client"]
         jina_client.post('/', Document(text=kwargs["text"]))
 
