@@ -1,7 +1,10 @@
-import time, random, os
+import os
+import random
+import time
+
 import requests
-from locust import User, task
 from jina import Client, Document
+from locust import User, task
 
 jina_client = Client(host="https://1df7973034.wolf.jina.ai")
 
@@ -15,9 +18,12 @@ class JinaReuqestService:
 
     def post(*args, **kwargs):
         ## todo: replace with actual Client get
-        # print("Making post request with: ", kwargs["text"])
-        da = jina_client.post('/', inputs=Document(text=kwargs["text"]))
-        print(da.to_json())
+        print("Making post request with: ", kwargs["text"])
+        # da = jina_client.post('/', inputs=Document(text=kwargs["text"]))
+        r = requests.post(
+            'https://1df7973034.wolf.jina.ai/search', json={'data': [{'text': 'Hello'}]}
+        )
+        print(r.json())
 
 
 class JinaRequestHandler:
