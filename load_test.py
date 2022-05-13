@@ -14,16 +14,16 @@ class JinaReuqestService:
         ## todo: replace with actual Client get
         # print("Making get request!")
         r = requests.get("https://1df7973034.wolf.jina.ai")
-        print(r.json())
+        # print(r.json())
 
     def post(*args, **kwargs):
         ## todo: replace with actual Client get
         print("Making post request with: ", kwargs["text"])
-        # da = jina_client.post('/', inputs=Document(text=kwargs["text"]))
-        r = requests.post(
-            'https://1df7973034.wolf.jina.ai/search', json={'data': [{'text': 'Hello'}]}
-        )
-        print(r.json())
+        da = jina_client.post('/', inputs=Document(text=kwargs["text"]))
+        # r = requests.post(
+        #    'https://1df7973034.wolf.jina.ai/search', json={'data': [{'text': 'Hello'}]}
+        # )
+        # print(r.json())
 
 
 class JinaRequestHandler:
